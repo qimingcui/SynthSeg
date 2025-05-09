@@ -36,15 +36,21 @@ from SynthSeg.brain_generator import BrainGenerator
 
 # script parameters
 n_examples = 5  # number of examples to generate in this script
-result_dir = '/mnt/hdd0/MRI_data/ADNI/synthseg_brain_generator_test/output_tutorial_advanced/'  # folder where examples will be saved
+result_dir = 'output_tutorial_advanced'  # folder where examples will be saved
 
+# Create output directory if it doesn't exist
+os.makedirs(result_dir, exist_ok=True)
 
 # path training label maps
-path_label_map = '../../data/training_label_maps'
-generation_labels = '../../data/labels_classes_priors/generation_labels.npy'
-output_labels = '../../data/labels_classes_priors/synthseg_segmentation_labels.npy'
+path_label_map = './data/training_label_maps'
+print("Current working directory:", os.getcwd())
+print("Attempting to access:", os.path.abspath(path_label_map))
+print("Directory exists:", os.path.exists(path_label_map))
+os.listdir(path_label_map)
+generation_labels = './data/labels_classes_priors/generation_labels.npy'
+output_labels = './data/labels_classes_priors/synthseg_segmentation_labels.npy'
 n_neutral_labels = 18
-output_shape = 160
+output_shape = 250
 
 
 # ---------- GMM sampling parameters ----------
@@ -56,7 +62,7 @@ prior_distributions = 'normal'
 # Example: (continuing the example of tutorial 1)  generation_labels = [0, 24, 507, 2, 3, 4, 17, 25, 41, 42, 43, 53, 57]
 #                                                 generation_classes = [0,  1,   2, 3, 4, 5,  4,  6,  3,  4,  5,  4,  6]
 # Note that structures with right/left labels are now associated with the same class.
-generation_classes = '../../data/labels_classes_priors/generation_classes_contrast_specific.npy'
+generation_classes = './data/labels_classes_priors/generation_classes_contrast_specific.npy'
 
 # We specify here the hyperparameters governing the prior distribution of the GMM.
 # As these prior distributions are Gaussian, they are each controlled by a mean and a standard deviation.
@@ -77,9 +83,9 @@ generation_classes = '../../data/labels_classes_priors/generation_classes_contra
 # mean of Gaussian for labels 4 and 43 drawn from N(40,15)
 # mean of Gaussian for labels 25 and 57 drawn from N(70,30)
 # These hyperparameters were estimated with the function SynthSR/estimate_priors.py/build_intensity_stats()
-prior_means = '../../data/labels_classes_priors/prior_means_t1.npy'
+prior_means = './data/labels_classes_priors/prior_means_t1.npy'
 # same as for prior_means, but for the standard deviations of the GMM.
-prior_stds = '../../data/labels_classes_priors/prior_stds_t1.npy'
+prior_stds = './data/labels_classes_priors/prior_stds_t1.npy'
 
 # ---------- Resolution parameters ----------
 
@@ -107,7 +113,15 @@ brain_generator = BrainGenerator(labels_dir=path_label_map,
                                  prior_stds=prior_stds,
                                  randomise_res=randomise_res,
                                  data_res=data_res,
-                                 thickness=thickness)
+                                 thickness=thickness,
+                                 scaling_bounds=0,        # Disable scaling
+                                 rotation_bounds=0,       # Disable rotation
+                                 shearing_bounds=0,       # Disable shearing
+                                 translation_bounds=False, # Disable translation
+                                 nonlin_std=0,           # Disable non-linear deformation
+                                 nonlin_scale=0,         # Not needed when nonlin_std is 0
+                                 bias_field_std=0)       # Disable bias field generation
+
 
 for n in range(n_examples):
 

@@ -187,7 +187,7 @@ def labels_to_image_model(labels_shape,
         image = layers.BiasFieldCorruption(bias_field_std, bias_scale, False)(image)
 
     # intensity augmentation
-    image = layers.IntensityAugmentation(clip=300, normalise=True, gamma_std=.5, separate_channels=True)(image)
+    # image = layers.IntensityAugmentation(clip=300, normalise=True, gamma_std=.5, separate_channels=True)(image)
 
     # loop over channels
     channels = list()
@@ -217,7 +217,6 @@ def labels_to_image_model(labels_shape,
     # compute image gradient
     if return_gradients:
         image = layers.ImageGradients('sobel', True, name='image_gradients')(image)
-        image = layers.IntensityAugmentation(clip=10, normalise=True)(image)
 
     # resample labels at target resolution
     if crop_shape != output_shape:
