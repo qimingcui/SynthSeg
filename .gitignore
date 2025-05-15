@@ -4,6 +4,7 @@ SynthSeg.egg-info
 venv
 **/__pycache__/
 .idea
+*.nii.gz
 
 ext/pynd
 ext/statannot

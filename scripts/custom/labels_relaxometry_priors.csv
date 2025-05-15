@@ -1,0 +1,16 @@
+Generation Class,Class name,t1_mean_upper,t1_mean_lower,t1_std_upper,t1_std_lower,t2_mean_upper,t2_mean_lower,t2_std_upper,t2_std_lower,pd_mean_upper,pd_mean_lower,pd_std_upper,pd_std_lower
+0,background,0,0,0,0,0,0,0,0,0,0,0,0
+1,CSF,5500,3800,400,200,2000,1000,50,30,98,95,2,0
+2,cerebral white matter,900,750,20,10,85,75,5,0,68,65,5,3
+3,cerebral cortex,1500,1250,100,30,135,95,7,2,85,80,5,1
+4,cerebellar white matter,900,750,20,10,85,75,5,0,68,65,5,3
+5,cerebellar cortex,1500,1250,100,30,135,95,7,2,85,80,5,1
+6,thalamus,1080,1060,70,40,72,60,3,0,76,75,5,1
+7,caudate,1450,1250,90,70,75,60,7,2,82,79,5,1
+8,putamen,1310,1100,70,30,63,57,5,2,82,79,5,1
+9,pallidum,1050,840,70,30,135,95,7,2,85,80,5,1
+10,brainstem,900,750,20,10,85,75,5,0,68,65,5,3
+11,hippocampus,1500,1300,70,50,130,110,9,3,83,81,2,1
+12,amygdala,1400,1200,200,50,100,95,10,5,85,80,5,1
+13,accumbens (gray),1500,1250,100,30,135,95,7,2,85,80,5,1
+14,ventral DC,1500,1250,100,30,135,95,7,2,85,80,5,1
